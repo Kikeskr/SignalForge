@@ -1,24 +1,37 @@
 # SignalForge
 
-An AI agent built by Team SignalForge for neatHack 2026.
+An evidence-first research CLI built by Team SignalForge for neatHack 2026.
 
-## Goals
-- Complete a useful task from start to finish.
-- Trace agent runs and investigate failures with neatlogs.
-- Use Entire to capture repository context and checkpoints.
-- Model pricing, costs, revenue, and runway with cfo.ai.
-- Integrate Crustdata company and people data where useful.
+## Setup
 
-## Setup status
-- [ ] Choose the initial use case and architecture.
-- [ ] Create the application scaffold.
-- [ ] Instrument the application with neatlogs.
-- [ ] Connect the repository to Entire and capture a checkpoint.
-- [ ] Create a business plan with cfo.ai.
-- [ ] Test a complete agent workflow.
+Requires Python 3.12 and `uv`.
 
-## Security
-Never commit API keys, access tokens, or private keys.
+```powershell
+uv sync --python 3.12
+uv run --python 3.12 signalforge --help
+uv run --python 3.12 pytest
+```
+
+Copy `.env.example` to `.env` only if using an integration that needs a key.
+The application reads `NEATLOGS_API_KEY` from the process environment for
+optional tracing. Never commit credentials.
+
+## Demo
+
+```powershell
+uv run --python 3.12 signalforge run "Python 3.12.10 release notes changes and date" --output reports/demo
+```
+
+SignalForge searches with DDGS, fetches a bounded set of pages, normalizes and
+deduplicates evidence, and writes a cited Markdown report, JSON ledger, and run
+metadata under `reports/`. Search is third-party best-effort metasearch.
+Findings are source excerpts with heuristic support/contradiction labels, not
+model synthesis or independent fact verification. Review sources before
+relying on results.
+
+See `IMPLEMENTATION_STATUS.md` for verified progress, `hackathon.md` for the
+dated build log, and `SUBMISSION_CHECKLIST.md` for remaining actions.
 
 ## Team
+
 SignalForge

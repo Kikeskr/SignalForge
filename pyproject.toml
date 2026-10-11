@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "signalforge"
+version = "0.1.0"
+description = "Evidence-first research CLI"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "ddgs>=9.16.0",
+    "neatlogs>=1.4.26",
+]
+
+[project.scripts]
+signalforge = "signalforge.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<9", "ruff>=0.9,<1", "mypy>=1.14,<2"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/signalforge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "src"
+strict = true
