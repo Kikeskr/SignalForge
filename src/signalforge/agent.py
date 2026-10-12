@@ -46,6 +46,7 @@ def _run_research(question: str, output: Path, max_sources: int = 8,
         if not text:
             continue
         evidence.append(make_evidence(result, text, query=question))
+    evidence.sort(key=lambda item: (item.source_type == "primary", item.evidence_strength == "strong"), reverse=True)
     findings = verify_evidence(evidence)
     output.mkdir(parents=True, exist_ok=True)
     save_evidence(output / "state.json", evidence)
